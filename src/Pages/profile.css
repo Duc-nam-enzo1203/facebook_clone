@@ -1,0 +1,59 @@
+.nav__btn button:hover {
+  background: #f0f2f5 !important;
+}
+
+h2 {
+  color: black;
+}
+
+nav .btn {
+  color: rgb(104, 103, 103);
+  height: 55px;
+  width: 120px;
+}
+
+.link a {
+  margin-top: 3px;
+  color: rgb(153, 152, 152);
+  padding: 15px 10px 15px 10px;
+  border-radius: 6px;
+}
+
+.link a:hover {
+  background-color: #d9dbde;
+}
+
+#post {
+  color: rgb(100, 100, 245);
+  border-radius: 0%;
+  border-bottom: 3px solid rgb(100, 100, 245);
+}
+
+.bgg {
+  height: 200px;
+}
+
+.list-work a {
+  text-decoration: none;
+  margin-left: 2%;
+}
+
+.list-work a:hover {
+  text-decoration: underline;
+}
+
+.list-work img {
+  margin-right: 2%;
+}
+
+.globe {
+  text-decoration: none;
+}
+
+.globe:hover {
+  text-decoration: underline;
+}
+
+.inputt::placeholder {
+  text-align: start;
+}
