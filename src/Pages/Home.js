@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import slugifyText from "../utils/slugifyText";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import ModalUpPost from "../components/ModalUpPost";
+import CardNewFeed from "../components/CardNewFeed";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  const newFeed = useSelector((state) => state.cardNewFeed);
+  const dispatch = useDispatch();
+
+  const renderNewFeed = newFeed.map((post) => (
+    <CardNewFeed
+      key={post.id}
+      title={post.title}
+      avatar={post.avatar}
+      time={post.time}
+      content={post.content}
+      slug={post.slug}
+      detail={post.detail}
+      image={post.image}
+    />
+  ));
+
   return (
     <div className="content-grid">
       <div className="column-left desktop-tablet-only">
@@ -149,8 +171,18 @@ export default function Home() {
           </div>
           <div className="card">
             <div className="new-post-action">
-              <img src="images/profile-320.jpg" className="my-profile" />
-              <input placeholder="What's on your mind, Yongmin?" />
+              <img src="images/profile-320.jpg" className="my-profile " />
+              <Button
+                className="w-100 bg-body-secondary border-0 text-start "
+                style={{ color: "black", borderRadius: "24px" }}
+                onClick={() => setModalShow(true)}
+              >
+                Nam ơi, bạn đang nghĩ gì thế ?
+              </Button>
+              <ModalUpPost
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
             </div>
             <div className="new-post-types">
               <div className="post-type">
@@ -166,255 +198,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="card post">
-            <div className="post-header">
-              <div className="post-author-info">
-                <img src="images/page-thumb-1.png" />
-                <div>
-                  <div>
-                    <span className="author-name">Bloomberg</span>
-                    <i className="verified-icon" />
-                  </div>
-                  <div className="details">
-                    <span>4h</span>
-                    <span> · </span>
-                    <i className="post-settings-icon" />
-                  </div>
-                </div>
-              </div>
-              <i className="post-menu-icon" />
-            </div>
-            <p className="post-body">
-              As of Monday, only about 56% of people eligible to get the shot
-              have stepped forward in a nation with the world’s second-worst
-              Covid-19 outbreak.
-            </p>
-            <a className="post-image">
-              <img src="images/feed-image-1.jpg" />
-              <div className="excerpt">
-                <div className="post-info-icon-wrap">
-                  <i className="post-info-icon" />
-                </div>
-                <label>bloomberg.com</label>
-                <h3>
-                  India’s Unusual Vaccine Problem: Plenty of Shots, But Few
-                  Takers
-                </h3>
-                <span>
-                  Most of the world is struggling to secure enough vaccines to
-                  inoculate their populations. India has the opposite problem:
-                  Plenty of shots, but a shortage of people willing to take
-                  them.
-                </span>
-              </div>
-            </a>
-            <div className="post-reactions">
-              <div className="reactions">
-                <div className="emojis">
-                  <img src="/images/wow.svg" />
-                  <img src="/images/haha.svg" />
-                  <img src="/images/like.svg" />
-                </div>
-                <span>366</span>
-              </div>
-              <div className="comment-share">
-                <div>
-                  <span>121</span>
-                  <span>Comments</span>
-                </div>
-                <div className="shares">
-                  <span>48</span>
-                  <span>Shares</span>
-                </div>
-              </div>
-            </div>
-            <div className="post-actions">
-              <div className="actions">
-                <div className="action">
-                  <i className="like-icon" />
-                  <span>Like</span>
-                </div>
-                <div className="action">
-                  <i className="comment-icon" />
-                  <span>Comment</span>
-                </div>
-                <div className="action">
-                  <i className="share-icon" />
-                  <span>Share</span>
-                </div>
-              </div>
-              <div className="interact-as">
-                <img src="images/profile-40.jpg" />
-                <i className="dropdown-icon-small" />
-              </div>
-            </div>
-          </div>
-          <div className="card post">
-            <div className="post-header">
-              <div className="post-author-info">
-                <img src="images/page-thumb-1.png" />
-                <div>
-                  <div>
-                    <span className="author-name">Bloomberg</span>
-                    <i className="verified-icon" />
-                  </div>
-                  <div className="details">
-                    <span>4h</span>
-                    <span> · </span>
-                    <i className="post-settings-icon" />
-                  </div>
-                </div>
-              </div>
-              <i className="post-menu-icon" />
-            </div>
-            <p className="post-body">
-              As of Monday, only about 56% of people eligible to get the shot
-              have stepped forward in a nation with the world’s second-worst
-              Covid-19 outbreak.
-            </p>
-            <a className="post-image">
-              <img src="images/feed-image-1.jpg" />
-              <div className="excerpt">
-                <div className="post-info-icon-wrap">
-                  <i className="post-info-icon" />
-                </div>
-                <label>bloomberg.com</label>
-                <h3>
-                  India’s Unusual Vaccine Problem: Plenty of Shots, But Few
-                  Takers
-                </h3>
-                <span>
-                  Most of the world is struggling to secure enough vaccines to
-                  inoculate their populations. India has the opposite problem:
-                  Plenty of shots, but a shortage of people willing to take
-                  them.
-                </span>
-              </div>
-            </a>
-            <div className="post-reactions">
-              <div className="reactions">
-                <div className="emojis">
-                  <img src="/images/wow.svg" />
-                  <img src="/images/haha.svg" />
-                  <img src="/images/like.svg" />
-                </div>
-                <span>366</span>
-              </div>
-              <div className="comment-share">
-                <div>
-                  <span>121</span>
-                  <span>Comments</span>
-                </div>
-                <div className="shares">
-                  <span>48</span>
-                  <span>Shares</span>
-                </div>
-              </div>
-            </div>
-            <div className="post-actions">
-              <div className="actions">
-                <div className="action">
-                  <i className="like-icon" />
-                  <span>Like</span>
-                </div>
-                <div className="action">
-                  <i className="comment-icon" />
-                  <span>Comment</span>
-                </div>
-                <div className="action">
-                  <i className="share-icon" />
-                  <span>Share</span>
-                </div>
-              </div>
-              <div className="interact-as">
-                <img src="images/profile-40.jpg" />
-                <i className="dropdown-icon-small" />
-              </div>
-            </div>
-          </div>
-          <div className="card post">
-            <div className="post-header">
-              <div className="post-author-info">
-                <img src="images/page-thumb-1.png" />
-                <div>
-                  <div>
-                    <span className="author-name">Bloomberg</span>
-                    <i className="verified-icon" />
-                  </div>
-                  <div className="details">
-                    <span>4h</span>
-                    <span> · </span>
-                    <i className="post-settings-icon" />
-                  </div>
-                </div>
-              </div>
-              <i className="post-menu-icon" />
-            </div>
-            <p className="post-body">
-              As of Monday, only about 56% of people eligible to get the shot
-              have stepped forward in a nation with the world’s second-worst
-              Covid-19 outbreak.
-            </p>
-            <a className="post-image">
-              <img src="images/feed-image-1.jpg" />
-              <div className="excerpt">
-                <div className="post-info-icon-wrap">
-                  <i className="post-info-icon" />
-                </div>
-                <label>bloomberg.com</label>
-                <h3>
-                  India’s Unusual Vaccine Problem: Plenty of Shots, But Few
-                  Takers
-                </h3>
-                <span>
-                  Most of the world is struggling to secure enough vaccines to
-                  inoculate their populations. India has the opposite problem:
-                  Plenty of shots, but a shortage of people willing to take
-                  them.
-                </span>
-              </div>
-            </a>
-            <div className="post-reactions">
-              <div className="reactions">
-                <div className="emojis">
-                  <img src="/images/wow.svg" />
-                  <img src="/images/haha.svg" />
-                  <img src="/images/like.svg" />
-                </div>
-                <span>366</span>
-              </div>
-              <div className="comment-share">
-                <div>
-                  <span>121</span>
-                  <span>Comments</span>
-                </div>
-                <div className="shares">
-                  <span>48</span>
-                  <span>Shares</span>
-                </div>
-              </div>
-            </div>
-            <div className="post-actions">
-              <div className="actions">
-                <div className="action">
-                  <i className="like-icon" />
-                  <span>Like</span>
-                </div>
-                <div className="action">
-                  <i className="comment-icon" />
-                  <span>Comment</span>
-                </div>
-                <div className="action">
-                  <i className="share-icon" />
-                  <span>Share</span>
-                </div>
-              </div>
-              <div className="interact-as">
-                <img src="images/profile-40.jpg" />
-                <i className="dropdown-icon-small" />
-              </div>
-            </div>
-          </div>
+          {renderNewFeed}
         </div>
       </div>
       <div className="column-right  desktop-tablet-only">

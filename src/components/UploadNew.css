@@ -1,0 +1,32 @@
+.content:focus-visible {
+  border: none !important;
+  outline: none !important;
+}
+
+.btn-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.upload-container {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.upload-container .btn-secondary {
+  font-size: 14px;
+}
+
+.upload-container > div {
+  background-color: #f8f9fb;
+  border-radius: 8px;
+}
+
+.upload-container p {
+  font-size: 12px;
+}
