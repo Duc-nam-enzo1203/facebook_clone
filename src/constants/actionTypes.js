@@ -1,3 +1,12 @@
+// current User
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const SET_USER = "SET_USER";
+
+// Loading
+export const SET_LOADING = "SET_LOADING";
+export const DONE = "DONE";
+
 // List current types of actions
 export const LIST_POSTS = "LIST_POSTS";
 export const LIST_COMMENTS = "LIST_COMMENTS";

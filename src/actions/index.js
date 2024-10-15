@@ -1,5 +1,31 @@
 import * as actions from "../constants/actionTypes";
 
+// Action user
+export const act_login_user = (user) => {
+  return {
+    type: actions.LOGIN_USER,
+    payload: { user },
+  };
+};
+
+export const act_logout_user = () => {
+  return {
+    type: actions.LOGOUT_USER,
+  };
+};
+
+export const act_set_user = (user) => {
+  return {
+    type: actions.SET_USER,
+    payload: { user },
+  };
+};
+
+// Loading
+export const set_Loading = () => ({
+  type: actions.SET_LOADING,
+});
+
 // Action Creators
 export const act_list_posts = () => {
   return {
@@ -21,26 +47,25 @@ export const act_list_likes = () => {
 };
 
 // Action push
-export const act_push_posts = (post, contents, image) => {
-  console.log(post, contents, image);
-
+export const act_push_posts = (post) => {
   return {
     type: actions.PUSH_POST,
-    payload: { post, contents, image },
+    payload: post,
   };
 };
 
 export const act_push_comments = (postId, comments) => {
   return {
     type: actions.PUSH_COMMENTS,
-    payload: { postId, comments },
+    postId,
+    comments,
   };
 };
 
 export const act_push_likes = (postId) => {
   return {
     type: actions.PUSH_LIKES,
-    payload: { postId },
+    payload: postId,
   };
 };
 

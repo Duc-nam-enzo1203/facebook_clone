@@ -5,25 +5,28 @@ import { Button } from "react-bootstrap";
 import ModalUpPost from "../components/ModalUpPost";
 import CardNewFeed from "../components/CardNewFeed";
 import { useSelector, useDispatch } from "react-redux";
+import CardUpPost from "../components/CardUpPost";
 
 export default function Home() {
   const [modalShow, setModalShow] = React.useState(false);
+  const newFeed = useSelector((state) => state.cardNewFeed.newFeed);
+  console.log(newFeed);
 
-  const newFeed = useSelector((state) => state.cardNewFeed);
   const dispatch = useDispatch();
 
-  const renderNewFeed = newFeed.map((post) => (
-    <CardNewFeed
-      key={post.id}
-      title={post.title}
-      avatar={post.avatar}
-      time={post.time}
-      content={post.content}
-      slug={post.slug}
-      detail={post.detail}
-      image={post.image}
-    />
-  ));
+  const renderNewFeed = newFeed
+    .filter((post) => post && post.id)
+    .map((post) => (
+      <CardNewFeed
+        key={post.id}
+        username={post?.post_user?.username || "No username available"}
+        avatar={post?.post_user?.avatar || "https://via.placeholder.com/150"}
+        content={post?.content || "No content available"}
+        slug={slugifyText(post?.content || "No content")}
+        detail={post?.time || "No time available"}
+        image={post?.image || "https://via.placeholder.com/150"}
+      />
+    ));
 
   return (
     <div className="content-grid">
@@ -169,35 +172,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="card">
-            <div className="new-post-action">
-              <img src="images/profile-320.jpg" className="my-profile " />
-              <Button
-                className="w-100 bg-body-secondary border-0 text-start "
-                style={{ color: "black", borderRadius: "24px" }}
-                onClick={() => setModalShow(true)}
-              >
-                Nam ơi, bạn đang nghĩ gì thế ?
-              </Button>
-              <ModalUpPost
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-              />
-            </div>
-            <div className="new-post-types">
-              <div className="post-type">
-                <i className="live-video-icon" /> Live Video
-              </div>
-              <div className="post-type">
-                <i className="photo-video-icon" /> Photo/Video
-              </div>
-              <div className="desktop-tablet-only">
-                <div className="post-type">
-                  <i className="feeling-activity-icon" /> Felling/Activity
-                </div>
-              </div>
-            </div>
-          </div>
+          <CardUpPost modalShow={modalShow} setModalShow={setModalShow} />
           {renderNewFeed}
         </div>
       </div>

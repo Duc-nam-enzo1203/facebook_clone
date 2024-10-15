@@ -1,10 +1,11 @@
 import React from "react";
+import { Dropdown } from "react-bootstrap";
+import "./CardNewFeed.css";
 
 export default function CartPosts({
   key,
-  title,
+  username,
   avatar,
-  time,
   content,
   slug,
   detail,
@@ -17,22 +18,37 @@ export default function CartPosts({
           <img src={avatar} />
           <div>
             <div>
-              <span className="author-name">{title}</span>
+              <span className="author-name">{username}</span>
               <i className="verified-icon" />
             </div>
             <div className="details">
-              <span>{time}</span>
+              <span>{new Date().toLocaleTimeString()}</span>
               <span> · </span>
               <i className="post-settings-icon" />
             </div>
           </div>
         </div>
-        <i className="post-menu-icon" />
+
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-basic" className="p-0 m-0 border-0 ">
+            <i className="post-menu-icon" />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Chỉnh sửa</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">
+              Chuyển vào kho lưu trữ
+            </Dropdown.Item>
+            <Dropdown.Item href="#/action-3">
+              Chuyển vào thùng rác
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
       <p className="post-body">{content}</p>
       <a className="post-image">
         <img src={image} style={{ maxHeight: "500px", objectFit: "cover" }} />
-        <div className="excerpt">
+        {/* <div className="excerpt">
           <div className="post-info-icon-wrap">
             <i className="post-info-icon" />
           </div>
@@ -45,7 +61,7 @@ export default function CartPosts({
             inoculate their populations. India has the opposite problem: Plenty
             of shots, but a shortage of people willing to take them.
           </span>
-        </div>
+        </div> */}
       </a>
       <div className="post-reactions">
         <div className="reactions">

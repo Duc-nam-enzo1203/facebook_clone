@@ -57,3 +57,56 @@ nav .btn {
 .inputt::placeholder {
   text-align: start;
 }
+
+.avt {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.css-18k2bs-MuiAvatar-root {
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 14px !important;
+}
+
+.css-1sx06gy-MuiAvatarGroup-root {
+  justify-content: flex-end !important;
+}
+
+.setting_profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  /* d-flex flex-column justify-content-end align-items-end */
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .head_profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .head_profile > .col-12 {
+    display: flex;
+    justify-content: center;
+  }
+  .head_profile > .col-12 > .col-12 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .box_profile {
+    align-items: center;
+    gap: 4px !important;
+  }
+
+  .setting_profile {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 4px;
+  }
+}
